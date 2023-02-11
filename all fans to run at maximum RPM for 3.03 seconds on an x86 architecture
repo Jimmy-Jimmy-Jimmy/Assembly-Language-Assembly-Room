@@ -1,0 +1,39 @@
+#Assembly Language  Assembly Room
+
+what is the lowest level programing language
+
+The lowest-level programming languages are often referred to as machine code or assembly language. These languages are written in binary and are specific to a particular computer architecture, such as x86 or ARM. Machine code consists of sequences of binary instructions that the computer can execute directly, without the need for an interpreter or compiler. Assembly language is a more human-readable form of machine code that uses mnemonics to represent the underlying binary instructions. Assembly language is still considered a low-level language, as it provides limited abstraction from the underlying hardware and requires manual memory management.
+Jim Byrne
+sample assembly language script that builds a script that signals all fans to run maximum R.P.M. for 3.03seconds
+
+Here is an example of assembly language code that signals all fans to run at maximum RPM for 3.03 seconds on an x86 architecture:
+
+vbnet
+
+section .data
+timer_value dd 0xD204CCCD ; 3.03 seconds in count
+
+section .text
+    global _start
+
+_start:
+    ; Load the timer value into the ECX register
+    mov ecx, [timer_value]
+
+    ; Start the countdown loop
+    fan_control:
+        ; Signal all fans to run at maximum RPM
+        ; (Actual code to control the fans would depend on the specific hardware)
+
+        ; Decrement the timer value in ECX
+        dec ecx
+
+        ; Check if the timer has reached 0
+        jnz fan_control
+
+    ; Exit the program
+    xor eax, eax
+    xor ebx, ebx
+    int 0x80
+
+This code uses x86 assembly instructions to load a timer value into the ECX register, then uses a loop to decrement the timer and signal the fans to run at maximum RPM. The loop continues until the timer reaches 0, at which point the program exits. The code to control the fans would depend on the specific hardware and may require additional instructions to communicate with the fans.
